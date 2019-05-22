@@ -20,7 +20,6 @@ public class Question {
     private Integer id;
     private String title;
     private String text;
-
     private User author;
     private Tag tag;
     private Timestamp date_time;

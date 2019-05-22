@@ -19,8 +19,9 @@ public class UserManagementSystem {
 
 
     @Transactional
-    public Optional<User> login(String username, String password) {
-        return repositoryFactory.createUserRepository().findUserInfo(username,password);
+    public User findByUsername (String username) {
+        return repositoryFactory.createUserRepository().findByName(username);
 
     }
+
 }

@@ -49,7 +49,14 @@ public class InMemoryUserRepository implements UserRepository {
         return Optional.empty();
     }
 
-
+    @Override
+    public User findByName(String username) {
+       // User user=new User();
+      //  if(user.getUsername().equals(username) ) {
+          //  return Optional.ofNullable(user);
+       // }
+        return null;
+    }
 
 
 }

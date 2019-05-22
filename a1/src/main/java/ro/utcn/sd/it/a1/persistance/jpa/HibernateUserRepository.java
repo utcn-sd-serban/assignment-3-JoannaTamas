@@ -49,5 +49,10 @@ public class HibernateUserRepository implements UserRepository {
         return Optional.empty();
     }
 
+    @Override
+    public User findByName(String username) {
+        return null;
+    }
+
 
 }

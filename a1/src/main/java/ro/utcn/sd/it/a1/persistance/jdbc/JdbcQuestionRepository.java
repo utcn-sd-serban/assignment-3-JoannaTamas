@@ -2,12 +2,15 @@ package ro.utcn.sd.it.a1.persistance.jdbc;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.support.Repositories;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Component;
 import ro.utcn.sd.it.a1.model.Question;
 import ro.utcn.sd.it.a1.model.Tag;
 import ro.utcn.sd.it.a1.model.User;
 import ro.utcn.sd.it.a1.persistance.api.QuestionRepository;
+import ro.utcn.sd.it.a1.persistance.api.RepositoryFactory;
 
 
 import java.util.HashMap;
@@ -15,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+@Component
 @RequiredArgsConstructor
 public class JdbcQuestionRepository implements QuestionRepository {
 
@@ -66,9 +69,9 @@ public class JdbcQuestionRepository implements QuestionRepository {
     @Override
     public List<Question> findAll() {
 
-        return template.query("SELECT * FROM question", (resultSet, i) ->
-                new Question(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("text"),
-                        new User(resultSet.getInt("author_id")), resultSet.getTimestamp("date_time")));
+        return template.query("SELECT * FROM question  JOIN question_tag ON question.id=question_tag.question_id JOIN tag ON tag.id=question_tag.tag_id", (resultSet, i) ->
+                new Question(resultSet.getInt("question.id"), resultSet.getString("title"), resultSet.getString("text"),
+                        new User (resultSet.getInt("author_id")), new Tag(resultSet.getString("tag_name")),resultSet.getTimestamp("date_time")));
     }
 
 
@@ -111,8 +114,9 @@ public class JdbcQuestionRepository implements QuestionRepository {
     }
 
     private void update(Question question) {
-        template.update("UPDATE  question SET title=? AND text=? WHERRE id=?",
-                question.getTitle(), question.getText(), question.getId(), question.getDate_time());
+
+        template.update("UPDATE  question SET title=? AND text=? AND author_id=?  AND date_time=? WHERE id=?",
+                question.getTitle(), question.getText(), question.getAuthor().getId(),question.getDate_time(),question.getId());
     }
 
 }

@@ -32,20 +32,20 @@ public class JdbcUserRepository implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        return template.query("SELECT * FROM user", new UserMapper());
+        return template.query("SELECT * FROM users", new UserMapper());
 
     }
 
     @Override
     public void remove(User user) {
-        template.update("DELETE FROM user WHERE id = ?", user.getId());
+        template.update("DELETE FROM users WHERE id = ?", user.getId());
 
     }
 
     @Override
     public Optional<User> findById(int id) {
 
-        List<User> users = template.query("SELECT * FROM user WHERE id = ?", new UserMapper(), id);
+        List<User> users = template.query("SELECT * FROM users WHERE id = ?", new UserMapper(), id);
         return users.isEmpty() ? Optional.empty() : Optional.ofNullable(users.get(0));
     }
 
@@ -57,9 +57,18 @@ public class JdbcUserRepository implements UserRepository {
         return userInfo.isEmpty() ? Optional.empty() : Optional.of(userInfo.get(0));
 
     }
+
+    @Override
+    public User findByName(String username){
+        List<User> userInfo = template.query("SELECT * FROM users WHERE username = ?",
+                new UserMapper(), username);
+        return userInfo.isEmpty() ? null: userInfo.get(0);
+    }
+
+
     private void update(User user) {
-        template.update( "UPDATE  user SET username=? AND password=? WHERRE id=?",
-                user.getUsername(),user.getPassword());
+        template.update( "UPDATE  users SET username=? AND password=? WHERE id=?",
+                user.getUsername(),user.getPassword(),user.getId());
 
     }
 

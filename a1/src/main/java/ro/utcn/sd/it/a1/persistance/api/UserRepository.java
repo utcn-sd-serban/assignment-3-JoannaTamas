@@ -18,5 +18,10 @@ public interface UserRepository {
 
 
     Optional<User> findUserInfo(String username, String password);
+
+    User findByName(String username);
+
+
+
 }
 

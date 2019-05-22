@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS users(
    id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(64) NOT NULL,
-    password VARCHAR(64) NOT NULL
+    password VARCHAR(200) NOT NULL
 
 
 );
@@ -34,13 +34,7 @@ CREATE TABLE IF NOT EXISTS tag(
 
 );
 
-CREATE TABLE IF NOT EXISTS users(
-   id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(64) NOT NULL,
-    password VARCHAR(64) NOT NULL
 
-
-);
 
 CREATE TABLE IF NOT EXISTS question_tag(
     question_id INT,
