@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "c0ad807c-75ce-4353-a426-203a62b5a83a",
+		"name": "testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/questions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3eb49816-29e7-4816-b2ee-d65ac9ec35fa",
+						"exec": [
+							"pm.test(\"Response status is OK\", function(){\r",
+							"    pm.response.to.be.ok;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"There are at least 5 questions\", function(){\r",
+							"    var questions = pm.response.json();\r",
+							"    pm.expect(questions.length).to.be.gt(5);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"title7\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "poop",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ioana",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/questions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
