@@ -71,9 +71,8 @@ public class JdbcQuestionRepository implements QuestionRepository {
 
         return template.query("SELECT * FROM question  JOIN question_tag ON question.id=question_tag.question_id JOIN tag ON tag.id=question_tag.tag_id", (resultSet, i) ->
                 new Question(resultSet.getInt("question.id"), resultSet.getString("title"), resultSet.getString("text"),
-                        new User (resultSet.getInt("author_id")), new Tag(resultSet.getString("tag_name")),resultSet.getTimestamp("date_time")));
+                        new User(resultSet.getInt("author_id")), new Tag(resultSet.getString("tag_name")), resultSet.getTimestamp("date_time")));
     }
-
 
 
     @Override
@@ -116,7 +115,7 @@ public class JdbcQuestionRepository implements QuestionRepository {
     private void update(Question question) {
 
         template.update("UPDATE  question SET title=? AND text=? AND author_id=?  AND date_time=? WHERE id=?",
-                question.getTitle(), question.getText(), question.getAuthor().getId(),question.getDate_time(),question.getId());
+                question.getTitle(), question.getText(), question.getAuthor().getId(), question.getDate_time(), question.getId());
     }
 
 }

@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,15 +13,14 @@ public class Tag {
     private String name;
 
 
-
     public Tag(int tag) {
 
-        this.id=tag;
+        this.id = tag;
     }
 
     public Tag(String t) {
 
-        this.name=t;
+        this.name = t;
     }
 
 
@@ -35,7 +33,7 @@ public class Tag {
     }
 
     public void setId(Integer id) {
-        this.id= id;
+        this.id = id;
     }
 
     public void setName(String name) {

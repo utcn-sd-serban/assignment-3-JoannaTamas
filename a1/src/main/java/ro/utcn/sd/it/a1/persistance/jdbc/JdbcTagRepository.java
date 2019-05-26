@@ -35,6 +35,7 @@ public class JdbcTagRepository implements TagRepository {
         }
         return tag;
     }
+
     @Override
     public void remove(Tag tag) {
         template.update("DELETE FROM tag WHERE id = ?", tag.getId());
@@ -42,20 +43,19 @@ public class JdbcTagRepository implements TagRepository {
 
     private int insert(Tag tag) {
 
-        SimpleJdbcInsert insert= new SimpleJdbcInsert(template);
+        SimpleJdbcInsert insert = new SimpleJdbcInsert(template);
         insert.setTableName("tag");
         insert.setGeneratedKeyName("id");
 
-        Map<String, Object>data=new HashMap<>();
-        data.put( "tag_name", tag.getName());
-
+        Map<String, Object> data = new HashMap<>();
+        data.put("tag_name", tag.getName());
 
 
         return insert.executeAndReturnKey(data).intValue();
     }
 
-    private void update(Tag tag){
+    private void update(Tag tag) {
         //template.update( "UPDATE  question SET title=? AND text=? WHERRE id=?",
-            //    question.getTitle(),question.getText(),question.getId(),question.getDate_time());
+        //    question.getTitle(),question.getText(),question.getId(),question.getDate_time());
     }
 }

@@ -16,7 +16,7 @@ public class QuestionDTO {
     private String title;
     private String text;
     private String author;
-  //  private User author;
+    //  private User author;
     private Tag tag;
     private Timestamp date_time;
 

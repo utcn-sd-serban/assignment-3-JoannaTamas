@@ -12,12 +12,12 @@ import javax.transaction.Transactional;
 @Component
 @Service
 @RequiredArgsConstructor
-public class TagManagementSystem {
+public class TagManagementService {
     private final RepositoryFactory repositoryFactory;
 
 
     @Transactional
-    public Tag addTag(Tag tag){
+    public Tag addTag(Tag tag) {
         return repositoryFactory.createTagRepository().save(tag);
 
     }

@@ -20,18 +20,18 @@ public class Answer {
     private Timestamp date;
 
     public Answer(int id, String text, User author_id, Question question_id, Timestamp date_time) {
-        this.id=id;
-        this.text=text;
-        this.author=author_id;
-        this.question=question_id;
-        this.date=date_time;
+        this.id = id;
+        this.text = text;
+        this.author = author_id;
+        this.question = question_id;
+        this.date = date_time;
     }
 
     public Answer(String text, Question q, User user, Timestamp dateTime) {
-        this.text=text;
-        this.question=q;
-        this.author=user;
-        this.date=dateTime;
+        this.text = text;
+        this.question = q;
+        this.author = user;
+        this.date = dateTime;
     }
 
 

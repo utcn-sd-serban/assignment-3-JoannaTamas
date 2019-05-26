@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class User {
     private Integer id;
-   private String username;
-   private String password;
+    private String username;
+    private String password;
 
 
     public User(Integer id, String username, String password) {
@@ -20,12 +20,13 @@ public class User {
     }
 
     public User(Integer id) {
-        this.id=id;
-        this.username=null;
-        this.password=null;
+        this.id = id;
+        this.username = null;
+        this.password = null;
 
 
     }
+
 
 
 }

@@ -10,16 +10,15 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 
-
 @Component
 @Service
 @RequiredArgsConstructor
-public class UserManagementSystem {
+public class UserManagementService {
     private final RepositoryFactory repositoryFactory;
 
 
     @Transactional
-    public User findByUsername (String username) {
+    public User findByUsername(String username) {
         return repositoryFactory.createUserRepository().findByName(username);
 
     }

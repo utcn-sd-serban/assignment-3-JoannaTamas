@@ -16,7 +16,7 @@ import java.util.List;
 @Component
 @Service
 @RequiredArgsConstructor
-public class AnswerManagementSystem {
+public class AnswerManagementService {
     private final RepositoryFactory repositoryFactory;
 
     @Transactional
@@ -50,7 +50,7 @@ public class AnswerManagementSystem {
     }
 
     @Transactional
-    public Answer editAnswer(Answer answer){
+    public Answer editAnswer(Answer answer) {
         return repositoryFactory.createAnswerRepository().edit(answer);
     }
 }

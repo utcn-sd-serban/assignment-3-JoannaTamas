@@ -19,11 +19,10 @@ public class JdbcUserRepository implements UserRepository {
     private final JdbcTemplate template;
 
     @Override
-    public User save(User user)
-    {
-        if(user.getId()==null){
+    public User save(User user) {
+        if (user.getId() == null) {
             user.setId(insert(user));
-        }else {
+        } else {
             update(user);
         }
         return user;
@@ -59,33 +58,31 @@ public class JdbcUserRepository implements UserRepository {
     }
 
     @Override
-    public User findByName(String username){
+    public User findByName(String username) {
         List<User> userInfo = template.query("SELECT * FROM users WHERE username = ?",
                 new UserMapper(), username);
-        return userInfo.isEmpty() ? null: userInfo.get(0);
+        return userInfo.isEmpty() ? null : userInfo.get(0);
     }
 
 
     private void update(User user) {
-        template.update( "UPDATE  users SET username=? AND password=? WHERE id=?",
-                user.getUsername(),user.getPassword(),user.getId());
+        template.update("UPDATE  users SET username=? AND password=? WHERE id=?",
+                user.getUsername(), user.getPassword(), user.getId());
 
     }
 
     private int insert(User user) {
 
-        SimpleJdbcInsert insert= new SimpleJdbcInsert(template);
+        SimpleJdbcInsert insert = new SimpleJdbcInsert(template);
         insert.setTableName("user");
         insert.setGeneratedKeyName("id");
 
-        Map<String, Object> data=new HashMap<>();
-        data.put( "username", user.getUsername());
-        data.put( "password",user.getPassword());
+        Map<String, Object> data = new HashMap<>();
+        data.put("username", user.getUsername());
+        data.put("password", user.getPassword());
 
         return insert.executeAndReturnKey(data).intValue();
     }
-
-
 
 
 }

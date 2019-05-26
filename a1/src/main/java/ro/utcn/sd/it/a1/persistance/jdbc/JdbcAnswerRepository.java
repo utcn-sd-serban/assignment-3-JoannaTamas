@@ -31,7 +31,7 @@ public class JdbcAnswerRepository implements AnswerRepository {
     @Override
     public Answer save(Answer answer) {
 
-        if (answer.getId() ==null) {
+        if (answer.getId() == null) {
             answer.setId(insert(answer));
         } else {
             update(answer);
@@ -57,7 +57,7 @@ public class JdbcAnswerRepository implements AnswerRepository {
 
     @Override
     public Answer edit(Answer answer) {
-        if (answer.getId() !=null)
+        if (answer.getId() != null)
             update(answer);
 
         return answer;
@@ -65,7 +65,7 @@ public class JdbcAnswerRepository implements AnswerRepository {
 
     private void update(Answer answer) {
         template.update("UPDATE  answer SET  text=?  AND question_id=? AND author_id=? AND date_time =? WHERRE id=?",
-                answer.getText(), answer.getQuestion().getId(),answer.getAuthor().getId(), answer.getDate());
+                answer.getText(), answer.getQuestion().getId(), answer.getAuthor().getId(), answer.getDate());
     }
 
 
@@ -78,7 +78,7 @@ public class JdbcAnswerRepository implements AnswerRepository {
         data.put("text", answer.getText());
         data.put("author_id", answer.getAuthor().getId());
         data.put("date_time", answer.getDate());
-        data.put("question_id",answer.getQuestion().getId());
+        data.put("question_id", answer.getQuestion().getId());
         return insert.executeAndReturnKey(data).intValue();
 
 
